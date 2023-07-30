@@ -1,21 +1,29 @@
 <section class="py-5">
-            <div class="container px-4 px-lg-5 my-5">
-                <div class="row gx-4 gx-lg-5 align-items-center">
-                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="https://image.tmdb.org/t/p/w500<%= @movie['poster_path'] %>" alt="..." /></div>
-                    <div class="col-md-6">
-                        <h1 class="display-5 fw-bolder"><%= @movie['title'] %></h1>
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="row gx-4 gx-lg-5 align-items-center">
+            <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="https://image.tmdb.org/t/p/w500<%= @movie['poster_path'] %>" alt="..." /></div>
+                <div class="col-md-6">
+                    <h1 class="display-5 fw-bolder"><%= @movie['title'] %></h1>
                         <div class="fs-5 mb-5">
                             In <span class="fst-italic text-primary"><%= @movie['genres'].pluck("name").join(', ') %></span><br/>
                             <span><i class="fa-solid fa-star"></i><%= @movie['vote_average'] %></span>
-                        </div>
-                        <p class="lead"><%= @movie['overview'] %></p>
-                        <div class="d-flex">
-                            <button class="btn btn-outline-dark flex-shrink-0" type="button">
-                                <i class="bi-cart-fill me-1"></i>
-                                Add to watchlist
-                            </button>
-                        </div>
-                    </div>
                 </div>
+                
+                <p class="lead"><%= @movie['overview'] %></p>
+                
+                <div class="d-flex">
+                
+                    <% if current_user %>
+                        <% if current_user.watchlist_movies.exists?(tmdb_id: @movie['id']) %>
+                            <%= button_to "Remove from Watchlist", remove_from_watchlist_movie_path(@movie['id']), method: :delete, class: "btn btn-danger flex-shrink-0" %>
+                        <% else %>
+                            <%= button_to "Add to Watchlist", add_to_watchlist_movie_path(@movie['id']), method: :post, class: "btn btn-outline-dark flex-shrink-0" %>
+                        <% end %>
+                    <% else %>
+                        <%= link_to "Log in to Add to Watchlist", new_user_session_path, class: "btn btn-primary" %>
+                    <% end %>
+  
             </div>
-        </section>
+        </div>
+    </div>
+</section>

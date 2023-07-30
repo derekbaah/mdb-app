@@ -1,10 +1,12 @@
-<%= render 'movies/hero' %>
-
-<div class="container">
-	<h2 class="text-center">Latest Movies</h2>
+<div class="container mt-5">
+	
+  <h2 class="text-center">My Watchlist</h2>
+  
+  
+  <% if @watchlist_movies.any? %>
 	<div class="row justify-content-center">
 
-  <% @latest_movies.each do |movie| %>
+  <% @watchlist_movies.each do |movie| %>
 		<div class="card movie_card">
 		  <%= link_to(image_tag("https://image.tmdb.org/t/p/w500/#{movie["poster_path"]}", class:"card-img-top"), movie_path(movie['id'])) %>
       <div class="card-body">
@@ -15,17 +17,11 @@
           <%= link_to "View Details", movie_path(movie['id']) %>
 		  </div>
 		</div>
-    <% end %>
+  <% end %>
 
-				
-
-				
-
-				
-
-				
-		
-
-	</div>
+    </div>
+    <% else %>
+      
+      <div class="alert alert-danger" role="alert"><p>Your watchlist is empty.</p></div>
+  <% end %>
 </div>
-

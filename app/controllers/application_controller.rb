@@ -1,10 +1,10 @@
 class ApplicationController < ActionController::Base
     
-    # permit additional parameters for users model/devise
-    
-    protect_from_forgery with: :exception
+   protect_from_forgery with: :exception
 
-     before_action :configure_permitted_parameters, if: :devise_controller?
+   # permit additional parameters for users model/devise 
+     
+   before_action :configure_permitted_parameters, if: :devise_controller?
 
      protected
 
