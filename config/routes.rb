@@ -8,4 +8,5 @@ Rails.application.routes.draw do
     end
   end
   get '/watchlist', to: 'movies#watchlist', as: 'watchlist'
+  get '/search', to: 'movies#search'
 end

@@ -2,9 +2,16 @@ class MoviesController < ApplicationController
 
   # display popular movies from api
   def index
-    api_key = ENV['TMDB_API_KEY']
-    response = HTTParty.get("https://api.themoviedb.org/3/movie/popular?api_key=#{api_key}")
-    @latest_movies = response["results"]
+    # If a search query is provided, perform a movie search
+    if params[:query]
+      @search_results = search_movies(params[:query])
+      @latest_movies = [] # Make sure to set this to an empty array since the search is performed
+    else
+      api_key = ENV['TMDB_API_KEY']
+      response = HTTParty.get("https://api.themoviedb.org/3/movie/popular?api_key=#{api_key}")
+      @latest_movies = response["results"]
+      @search_results = [] # Set to an empty array as well
+    end
   end
 
   # show details for each movie
@@ -61,6 +68,14 @@ class MoviesController < ApplicationController
     @watchlist_movies = current_user.watchlist_movies
   end
 
+  def search
+    if params[:query]
+      @search_results = search_movies(params[:query])
+    else
+      @search_results = [] # Set to an empty array if no search query is provided
+    end
+  end
+
 
   private
 
@@ -77,6 +92,21 @@ class MoviesController < ApplicationController
     else
       # Handle error, e.g., movie not found
       return nil
+    end
+  end
+
+  def search_movies(query)
+    base_url = 'https://api.themoviedb.org/3/search/movie'
+    api_key = ENV['TMDB_API_KEY']
+    url = "#{base_url}?api_key=#{api_key}&query=#{URI.encode(query)}&language=en-US"
+
+    response = HTTParty.get(url)
+
+    if response.code == 200
+      return JSON.parse(response.body)["results"]
+    else
+      # Handle error, e.g., failed API call
+      return []
     end
   end
 

@@ -24,6 +24,10 @@
             <a class="nav-link" href="<%= new_user_session_path %>">Sign in</a>
           </li>
         <% end %>
+        <%= form_tag search_path, method: :get do %>
+          <%= text_field_tag :query, params[:query], placeholder: "Search for movies...", class: "form-control" %>
+          <%= submit_tag "Search", class: "btn btn-outline-dark" %>
+        <% end %>
       </ul>
     </div>
   </div>
