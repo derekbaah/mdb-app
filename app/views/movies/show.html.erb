@@ -13,15 +13,19 @@
                 
                 <div class="d-flex">
                 
-                    <% if current_user %>
-                        <% if current_user.watchlist_movies.exists?(tmdb_id: @movie['id']) %>
-                            <%= button_to "Remove from Watchlist", remove_from_watchlist_movie_path(@movie['id']), method: :delete, class: "btn btn-danger flex-shrink-0" %>
-                        <% else %>
-                            <%= button_to "Add to Watchlist", add_to_watchlist_movie_path(@movie['id']), method: :post, class: "btn btn-outline-dark flex-shrink-0" %>
-                        <% end %>
-                    <% else %>
-                        <%= link_to "Log in to Add to Watchlist", new_user_session_path, class: "btn btn-primary" %>
-                    <% end %>
+                <% if current_user && current_user.watched_movies.exists?(tmdb_id: @movie['id']) %>
+                  <i class="fa-solid fa-eye"></i><p>You have seen this movie</p>
+                <% else %>
+                  <%= link_to 'Add to Watched Movies', add_to_watched_movies_path(@movie['id']), method: :post, class: "btn btn-info" %>
+                <% end %>
+                
+                <% if current_user.watchlist_movies.exists?(tmdb_id: @movie['id']) %>
+                  <%= button_to "Remove from Watchlist", remove_from_watchlist_movie_path(@movie['id']), method: :delete, class: "btn btn-danger flex-shrink-0" %>
+                <% else %>
+                  <%= button_to "Add to Watchlist", add_to_watchlist_movie_path(@movie['id']), method: :post, class: "btn btn-outline-dark flex-shrink-0" %>
+                <% end %>
+              
+                
   
             </div>
         </div>

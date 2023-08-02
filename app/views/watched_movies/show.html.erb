@@ -1,0 +1,32 @@
+<section class="py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="row gx-4 gx-lg-5 align-items-center">
+                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="https://image.tmdb.org/t/p/w500/<%= @watched_movie.poster_path %>" alt="..." /></div>
+                    <div class="col-md-6">
+                        <h1 class="display-5 fw-bolder"><%= @watched_movie.title %></h1>
+                        <div class="fs-5 mb-5">
+                            <span>Leave a review on this movie</span>
+                        </div>
+                        <div class="row">
+                            <%= render 'reviews/form' %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-5 bg-light">
+            <div class="container px-4 px-lg-5 mt-5">
+                <h2 class="fw-bolder mb-4">Reviews</h2>
+                    <%= render 'reviews/reviews' %>
+        </section>
+
+        
+        <div id="movie-rating"></div>
+<script>
+  $(document).ready(function() {
+    $('#movie-rating').raty({
+      // Options for the plugin (e.g., readOnly: true, score: 4.5, ...)
+    });
+  });
+</script>

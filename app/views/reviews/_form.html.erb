@@ -1,0 +1,17 @@
+<%= form_with(model: [@watched_movie, @review], url: create_review_watched_movie_path(@watched_movie), method: :post) do |form| %>
+  
+  <div class="form-group">
+    <%= form.label :comment %>
+    <%= form.text_area :comment, class: "form-control" %>
+  </div>
+  
+  <div>
+    <% form.label :rating %>
+    <div id="review-rating" class="raty"></div>
+    <%= form.hidden_field :rating, id: 'review-rating-input' %>
+  </div>
+  
+  <div>
+    <%= form.submit 'Add Review', class: "btn btn-primary" %>
+  </div>
+<% end %>

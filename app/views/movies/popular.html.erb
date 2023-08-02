@@ -1,8 +1,8 @@
 <h1>Latest Movies</h1>
 
-<% if @latest_movies.present? %>
+<% if @popular.present? %>
   <ul>
-    <% @latest_movies.each do |movie| %>
+    <% @popular.each do |movie| %>
       <li>
         <h2><%= movie["title"] %></h2>
         <p><strong>Overview:</strong> <%= movie["overview"] %></p>

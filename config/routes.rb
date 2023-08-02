@@ -9,4 +9,9 @@ Rails.application.routes.draw do
   end
   get '/watchlist', to: 'movies#watchlist', as: 'watchlist'
   get '/search', to: 'movies#search'
+  get '/popular', to: 'movies#popular'
+  resources :watched_movies do
+    post 'create_review', on: :member
+  end
+  get 'movies/:id/add_to_watched_movies', to: 'movies#add_to_watched_movies', as: 'add_to_watched_movies'
 end

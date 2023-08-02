@@ -3,17 +3,15 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
+require("jquery")
 require("@popperjs/core")
+require("bootstrap")
+
+require("../stylesheets/application.scss")
+require("@fortawesome/fontawesome-free")
 
 import "bootstrap"
-
-// Import the specific modules you may need (Modal, Alert, etc)
-import { Tooltip, Popover } from "bootstrap"
-
-// The stylesheet location we created earlier
-require("../stylesheets/application.scss")
-require("@fortawesome/fontawesome-free");
-
+//import { Tooltip, Popover } from "bootstrap"
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"

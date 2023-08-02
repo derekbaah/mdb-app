@@ -1,0 +1,15 @@
+<% if @watched_movie.reviews.any? %>
+  <div class="card card-inner">
+    <% @watched_movie.reviews.each do |review| %>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-10">
+            <p><%= review.comment %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <p>No reviews yet.</p>
+<% end %>

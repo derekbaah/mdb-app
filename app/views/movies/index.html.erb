@@ -1,4 +1,4 @@
-<%= render 'movies/hero' %>
+<% render 'movies/hero' %>
 
 <div class="container">
 	<h2 class="text-center">Latest Movies</h2>
@@ -6,26 +6,21 @@
 
   <% @latest_movies.each do |movie| %>
 		<div class="card movie_card">
-		  <%= link_to(image_tag("https://image.tmdb.org/t/p/w500/#{movie["poster_path"]}", class:"card-img-top"), movie_path(movie['id'])) %>
-      <div class="card-body">
-		  	<i class="fa-solid fa-play play_button" data-toggle="tooltip" data-placement="bottom" title="Play Trailer"></i>
-		    <h6 class="card-title"><i class="fa-solid fa-star"></i><%= movie["vote_average"]%></h6>
-          <span class="movie_info"><% movie["release_date"] %></span>
-		   		<span class="movie_info float-right"><i class="far fa-star"></i><%= movie["vote_average"]%></span>
-          <%= link_to "View Details", movie_path(movie['id']) %>
-		  </div>
+
+			<% if movie["poster_path"].empty? %>
+
+			<%= link_to(image_tag("https://motivatevalmorgan.com/wp-content/uploads/2016/06/default-movie.jpg", class:"card-img-top"), movie_path(movie['id'])) %>
+			<% else %>
+			<%= link_to(image_tag("https://image.tmdb.org/t/p/w500/#{movie["poster_path"]}", class:"card-img-top"), movie_path(movie['id'])) %>
+			<% end %>
+			<div class="card-body">
+			<i class="fas fa-play play_button" data-toggle="tooltip" data-placement="bottom" title="Play Trailer"></i>
+		  	<h5 class="card-title"><%= movie["title"] %></h5>
+				 <span class="movie_info"><i class="fa-regular fa-calendar-days">&nbsp;</i><%= movie["release_date"].to_date.strftime('%Y') %></span>
+				 <span class="movie_info float-right"><i class="fas fa-star">&nbsp;</i><%= movie["vote_average"] %></span>
+			</div>
 		</div>
     <% end %>
-
-				
-
-				
-
-				
-
-				
-		
-
 	</div>
 </div>
 
