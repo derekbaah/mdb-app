@@ -1,5 +1,7 @@
 class MoviesController < ApplicationController
 
+  before_action :authenticate_user!, except: [:index, :show, :search]
+  
   # Display movies currently playing in theatres from the API or search results based on query.
   def index
     if params[:query]

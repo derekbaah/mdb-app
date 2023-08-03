@@ -5,13 +5,12 @@
     <%= form.text_area :comment, class: "form-control" %>
   </div>
   
-  <div>
-    <% form.label :rating %>
-    <div id="review-rating" class="raty"></div>
-    <%= form.hidden_field :rating, id: 'review-rating-input' %>
+  <div class="form-group">
+    <%= form.label :rating %>
+    <%= form.number_field :rating, in: 1..5, class: "form-control" %>
   </div>
   
-  <div>
-    <%= form.submit 'Add Review', class: "btn btn-primary" %>
-  </div>
+  
+  <%= form.submit 'Add Review', class: "btn btn-primary" %>
+  
 <% end %>

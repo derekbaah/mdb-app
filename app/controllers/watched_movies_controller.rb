@@ -1,4 +1,7 @@
 class WatchedMoviesController < ApplicationController
+  
+  before_action :authenticate_user!
+  
   # Display a list of watched movies for the current user.
   def index
     @watched_movies = current_user.watched_movies

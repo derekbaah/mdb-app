@@ -8,13 +8,10 @@
 
   <% @watchlist_movies.each do |movie| %>
 		<div class="card movie_card">
-		  <%= link_to(image_tag("https://image.tmdb.org/t/p/w500/#{movie["poster_path"]}", class:"card-img-top"), movie_path(movie['id'])) %>
+		  <%= link_to(image_tag("https://image.tmdb.org/t/p/w500/#{movie["poster_path"]}", class:"card-img-top"), movie_path(movie['tmdb_id'])) %>
       <div class="card-body">
 		  	<i class="fa-solid fa-play play_button" data-toggle="tooltip" data-placement="bottom" title="Play Trailer"></i>
-		    <h6 class="card-title"><i class="fa-solid fa-star"></i><%= movie["vote_average"]%></h6>
-          <span class="movie_info"><% movie["release_date"] %></span>
-		   		<span class="movie_info float-right"><i class="far fa-star"></i><%= movie["vote_average"]%></span>
-          <%= link_to "View Details", movie_path(movie['id']) %>
+		    <h5 class="card-title"><%= movie["title"]%></h5>
 		  </div>
 		</div>
   <% end %>
