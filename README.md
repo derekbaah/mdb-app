@@ -24,24 +24,23 @@ This is a Rails 6 application that utilizes the TMDB (The Movie Database) API to
 git clone (https://github.com/derekbaah/mdb-app)
 cd your-tmdb-app
 
-2. Install dependencies
-
-bundle install
-
-3. Set up the database
-
-rails db:create
-rails db:migrate
-
-4. Get your TMDB API key
+2. Get your TMDB API key
 
 Sign up for a free account on the TMDB website (https://www.themoviedb.org/?language=en-US)
 Once you have an account, request an API key from the API settings page
 
-5. Set your TMDB API key
+3. Set your TMDB API key
 
-6. Start the Rails server
-rails server
+Using dotenv-rails gem to manage environment variables in this app. Create a .env file in the root folder and set your API key from TMDB. 
+
+TMDB_API_KEY='YOUR API KEY'
+
+
+4. Build and Run Docker Containers
+
+docker-compose build  
+docker-compose up
+
 
 # USAGE
 
